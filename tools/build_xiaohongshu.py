@@ -43,6 +43,7 @@ def main():
     os.makedirs(PKG)
 
     html = open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read()
+    html = re.sub(r'\?v=\d+"', '"', html)  # cache-busting query is website-only
     html, n = strip_html(html)
     assert n == 4, 'expected 4 web-only blocks in index.html, found %d' % n
     html = re.sub(r'<meta name="viewport"[^>]*>', VIEWPORT, html, count=1)

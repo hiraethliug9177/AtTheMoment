@@ -51,7 +51,7 @@ python3 -m http.server 4173
 
 ## 发布
 
-通过 GitHub Pages 从 `main` 分支根目录发布。推送到 `main` 后网站自动更新。
+通过 GitHub Pages 从 `main` 分支根目录发布。推送到 `main` 后网站自动更新。修改 JS / CSS 后，把四个 HTML 里的 `?v=` 版本号一起改掉，朋友的手机才会立刻拿到新文件（打包小红书版时会自动去掉）。
 
 ## 小红书小工具版
 
