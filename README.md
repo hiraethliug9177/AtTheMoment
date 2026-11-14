@@ -4,9 +4,9 @@
 
 **在线使用：** https://hiraethliug9177.github.io/AtTheMoment/
 
-| 中文 | English | 日本語 | 한국어 |
-|---|---|---|---|
-| [打开](https://hiraethliug9177.github.io/AtTheMoment/) | [Open](https://hiraethliug9177.github.io/AtTheMoment/en.html) | [開く](https://hiraethliug9177.github.io/AtTheMoment/ja.html) | [열기](https://hiraethliug9177.github.io/AtTheMoment/ko.html) |
+| 简体中文 | 繁體中文 | English | 日本語 | 한국어 |
+|---|---|---|---|---|
+| [打开](https://hiraethliug9177.github.io/AtTheMoment/) | [打開](https://hiraethliug9177.github.io/AtTheMoment/?lang=zh-Hant) | [Open](https://hiraethliug9177.github.io/AtTheMoment/en.html) | [開く](https://hiraethliug9177.github.io/AtTheMoment/ja.html) | [열기](https://hiraethliug9177.github.io/AtTheMoment/ko.html) |
 
 <img src="docs/screenshots/AtTheMoment-mobile.png" width="260" alt="手机界面截图">
 
@@ -17,7 +17,8 @@
 - 任选一人作为日期与时间输入基准，自动换算所有地点的当地时间及日期。
 - 使用浏览器 Intl / IANA 时区规则，考虑所选日期的夏令时，提示不存在或重复的当地时间。
 - 分享工具链接，或分享包含朋友名单、地点与约定时间的链接。
-- 中文、English、日本語、한국어 四语言，页面右上角切换；切换语言不会重置输入。
+- 简体中文、繁體中文、English、日本語、한국어 五种语言，页面内即时切换，不会重置输入。
+- 内置 117 个常用城市（中英文均可搜索），离线可用；网站版另可联网搜索更多城市。
 
 ## 数据与隐私
 
@@ -27,14 +28,15 @@
 
 ## 项目文件
 
-- `index.html`：默认入口（中文，之后记住语言选择）
-- `en.html`、`ja.html`、`ko.html`：英、日、韩入口
+- `index.html`：默认入口（简体中文，之后记住语言选择；`?lang=zh-Hant` 打开繁体）
+- `en.html`、`ja.html`、`ko.html`：英、日、韩入口（仅网站版）
 - `style.css`：样式
 - `app.js`：朋友、城市搜索、本地保存与分享
 - `time.js`：时区换算
-- `i18n.js`：四语言文案与语言偏好
-- `logo.png`：Logo 与标签页图标
-- `avatars/`：40 张头像
+- `i18n.js`：五语言文案与语言切换
+- `assets/logo.png`：Logo 与标签页图标
+- `assets/avatars/`：40 张头像
+- `tools/build_xiaohongshu.py`：生成小红书小工具 ZIP
 - `docs/screenshots/`：截图（不影响网站运行）
 
 ## 本地运行
@@ -50,6 +52,16 @@ python3 -m http.server 4173
 ## 发布
 
 通过 GitHub Pages 从 `main` 分支根目录发布。推送到 `main` 后网站自动更新。
+
+## 小红书小工具版
+
+同一份代码可以打包成小红书小工具（离线 H5）：
+
+```sh
+python3 tools/build_xiaohongshu.py
+```
+
+产物在 `dist/AtTheMoment-xiaohongshu.zip`（`index.html` 位于 ZIP 根目录）。打包时会去掉仅网站版使用的部分（代码中以 `/*@web-only*/ … /*@end-web-only*/` 和 `<!--web-only--> … <!--/web-only-->` 标记）：在线城市搜索、分享链接、外部链接，以及英日韩独立页面。小工具版只用内置城市与手动时区，客户端 9.46+ 优先使用平台 Storage 保存名单。
 
 ## 许可
 
